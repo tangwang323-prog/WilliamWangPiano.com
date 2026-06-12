@@ -1,8 +1,0 @@
-{
-  "appId": "com.williamyuchengwang.app",
-  "appName": "William Yucheng Wang",
-  "webDir": "dist",
-  "server": {
-    "androidScheme": "https"
-  }
-}
