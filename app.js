@@ -95,19 +95,35 @@ document.querySelectorAll('.visible-tabs .tab').forEach((tab) => {
   });
 });
 
-let installPrompt;
-const installButton = document.querySelector('.install-button');
-window.addEventListener('beforeinstallprompt', (event) => {
+
+
+// Add real clickable menu hotspots over each screenshot so the screenshot navigation works.
+function addHotspots(section) {
+  if (!section || section.querySelector('.hotspot-nav')) return;
+  const nav = document.createElement('nav');
+  nav.className = 'hotspot-nav';
+  nav.setAttribute('aria-label', 'Screenshot navigation');
+  nav.innerHTML = `
+    <a class="hot-home" href="#home">Home</a>
+    <a class="hot-compositions" href="#compositions">Compositions</a>
+    <a class="hot-awards" href="#awards">Awards</a>
+    <a class="hot-bio" href="#biography">Biographies</a>
+    <a class="hot-contact" href="#contact">Contact</a>
+  `;
+  section.appendChild(nav);
+}
+document.querySelectorAll('.screenshot-section').forEach(addHotspots);
+
+// Make all internal navigation scroll cleanly to the exact section.
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link) return;
+  const id = link.getAttribute('href').slice(1);
+  const target = document.getElementById(id);
+  if (!target) return;
   event.preventDefault();
-  installPrompt = event;
-  installButton.hidden = false;
-});
-installButton.addEventListener('click', async () => {
-  if (!installPrompt) return;
-  installPrompt.prompt();
-  await installPrompt.userChoice;
-  installPrompt = null;
-  installButton.hidden = true;
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  history.replaceState(null, '', `#${id}`);
 });
 
 // Let users click the screenshot-based slides to view the sharper full-resolution image.

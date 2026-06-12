@@ -1,20 +1,5 @@
-# William Actual App — Sharper Version
+# William Yucheng Wang — Exact Video Style App
 
-This is the corrected app with the Remixes & Reimaginings section included and the other screenshot-based slides replaced with higher-resolution, sharpened images.
+This version uses the dark full-screen slide layout from the screen recordings and adds real clickable navigation. The screenshot-style menu areas for Home, Compositions, Awards, Biographies, and Contact now actually jump to their sections.
 
-## Open it
-
-Double-click `index.html` to preview it in a browser.
-
-For a better app-style preview:
-
-```bash
-npm install
-npm start
-```
-
-Then open the local URL shown in the terminal.
-
-## Tip
-
-On a computer, click any screenshot-style slide to open a larger, sharper view.
+To publish on GitHub Pages, upload the files in this folder to the top level of the repository, then use Settings → Pages → Deploy from a branch → main → /root.
